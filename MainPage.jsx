@@ -2,37 +2,37 @@ import React from 'react';
 import { StyleSheet, SafeAreaView, View, Text, TextInput, TouchableOpacity, Dimensions, FlatList } from 'react-native';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { ScrollView } from 'react-native'
-import Mac1 from './assets/2020-Macbook.png';
-import Mac2 from './assets/2012-Macbook.png';
-import Acer from './assets/2020-Acer.png';
-import Dell from './assets/2019-Dell.png';
+import blue_bag from './assets/blue-bag.png';
+import red_bag from './assets/red-bag.png';
+import black_bag from './assets/black-bag.png';
+import green_bag from './assets/green-bag.png';
 import List from './components/List';
 
 export default function MainPage() {
   const data = [
     {
-      imgUrl: Mac1,
-      name: "2020 Macbook Pro",
+      imgUrl: blue_bag,
+      name: "Blue Bag",
       rating: 4.5,
-      price: '1,299'
+      price: '15'
     },
     {
-      imgUrl: Mac2,
-      name: "2012 Macbook Pro",
+      imgUrl: red_bag,
+      name: "Red Bag",
       rating: 3,
-      price: '299'
+      price: '23'
     },
     {
-      imgUrl: Acer,
-      name: "Acer Aspire 5",
+      imgUrl: black_bag,
+      name: "Black Bag",
       rating: 4,
-      price: '549'
+      price: '42'
     },
     {
-      imgUrl: Dell,
-      name: "Inspiron 15 30",
+      imgUrl: green_bag,
+      name: "Green Bag",
       rating: 2.5,
-      price: "349"
+      price: "30"
     }
   ]
   return (
@@ -48,22 +48,24 @@ export default function MainPage() {
           </View>
         </View>
         {/* Title */}
-        <Text style={styles.title}>Laptops</Text>
+        <Text style={styles.title}>Bags</Text>
         {/* Input */}
         <View style={styles.inputContainer}>
-          <TextInput placeholder="Search Laptop" style={styles.input} />
+          <TextInput placeholder="Search Bags" style={styles.input} />
           <TouchableOpacity>
             <Text style={styles.inputText}>Filter</Text>
           </TouchableOpacity>
         </View>
       </View>
       {/* List */}
-      <ScrollView >
+      <ScrollView>
+          <View>
       <FlatList
       data={data}
       renderItem={(data) => <List data={data.item} />}
       keyExtractor={(index) => data.index}
       />
+      </View>
       </ScrollView>
     </SafeAreaView>
   );
@@ -85,7 +87,16 @@ const styles = StyleSheet.create({
   topNavIcon: {
     padding: 12,
     borderRadius: 50,
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    shadowColor: "#000",
+shadowOffset: {
+	width: 0,
+	height: 2,
+},
+shadowOpacity: 0.1,
+shadowRadius: 3.84,
+
+elevation: 5,
   },
   title: {
     marginTop: 50,

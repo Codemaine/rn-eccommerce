@@ -1,11 +1,19 @@
-import React from 'react'
-import { View, Text } from 'react-native'
-import MainPage from './MainPage'
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import MainPage from './MainPage';
+import Single from './Single';
 
-const App = () => {
+const Stack = createStackNavigator();
+
+export default function App() {
   return (
-    <MainPage />
-  )
+    <NavigationContainer>
+       <Stack.Navigator initialRouteName="Home">
+         <Stack.Screen name="Home" component={MainPage} options={{ headerShown: false }} />
+         <Stack.Screen name="Single" component={Single} options={{ headerShown: false }} />
+       </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
-
-export default App

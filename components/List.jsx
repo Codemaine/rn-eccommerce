@@ -1,34 +1,42 @@
 import React, { PureComponent } from 'react'
-import { Text, View, StyleSheet, Image } from 'react-native'
+import { Text, View, StyleSheet, Image, TouchableOpacity, TouchableOpacityBase } from 'react-native'
 import StarRating from 'react-native-star-rating'
+import { useNavigation } from '@react-navigation/native';
 
-export default class List extends React.Component {
-    render() {
+
+
+export default function List(props)  {
+        const navigation = useNavigation();
         return (
             <View style={styles.container} >
             
                 <View style={styles.item}>
-                     <Image source={this.props.data.imgUrl} style={styles.itemFoto} />
+                     <Image source={props.data.imgUrl} style={styles.itemFoto} />
                     
                     <View style={styles.itemContainer}>
-                        <Text style={styles.itemName}>{this.props.data.name}</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('Single', {
+                            name: props.data.name,
+                            rating: props.data.rating,
+                            imgUrl: props.data.imgUrl,
+                            price: props.data.price
+                        })}>
+                        <Text style={styles.itemName}>{props.data.name}</Text>
+                        </TouchableOpacity>
                         <StarRating 
                            maxStars={5}
-                           rating={this.props.data.rating}
+                           rating={props.data.rating}
                            fullStarColor={'#FFB000'}
                            starSize={14}
                         />
-                        <Text style={styles.itemPrice}>${this.props.data.price}</Text>
+                        <Text style={styles.itemPrice}>${props.data.price}</Text>
                     </View>
                 </View>
         </View>
         )
-    }
 }
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'column',
         margin: 20
     },
     item: {
@@ -51,6 +59,7 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     itemFoto: {
-      
+      height: 250,
+      width: 250
     },
 })
