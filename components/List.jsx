@@ -7,28 +7,28 @@ import { useNavigation } from '@react-navigation/native';
 
 export default function List(props)  {
         const navigation = useNavigation();
+        //destructured the props.data
+        const { name, rating, imgUrl, price} = props.data
+
         return (
             <View style={styles.container} >
             
                 <View style={styles.item}>
-                     <Image source={props.data.imgUrl} style={styles.itemFoto} />
+                     <Image source={imgUrl} style={styles.itemFoto} />
                     
                     <View style={styles.itemContainer}>
                         <TouchableOpacity onPress={() => navigation.navigate('Single', {
-                            name: props.data.name,
-                            rating: props.data.rating,
-                            imgUrl: props.data.imgUrl,
-                            price: props.data.price
+                            name,rating,imgUrl,price
                         })}>
-                        <Text style={styles.itemName}>{props.data.name}</Text>
+                        <Text style={styles.itemName}>{name}</Text>
                         </TouchableOpacity>
                         <StarRating 
                            maxStars={5}
-                           rating={props.data.rating}
+                           rating={rating}
                            fullStarColor={'#FFB000'}
                            starSize={14}
                         />
-                        <Text style={styles.itemPrice}>${props.data.price}</Text>
+                        <Text style={styles.itemPrice}>${price}</Text>
                     </View>
                 </View>
         </View>
