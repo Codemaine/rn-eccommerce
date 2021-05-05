@@ -8,6 +8,9 @@ import { useNavigation } from '@react-navigation/core';
 
 export default function Single({ route })  {
     const navigation = useNavigation();
+    //Destructuring route.params
+    const { name, rating, imgUrl, price} = route.params
+    
         return (
             <SafeAreaView style={styles.main_container}>
                 <View style={styles.main}>
@@ -25,11 +28,11 @@ export default function Single({ route })  {
                         </View>
                     </View> 
                     <View style={styles.ItemDetails}>
-                    <Image source={route.params.imgUrl} style={styles.itemImage} />
-                    <Text style={styles.ItemName}>{route.params.name}</Text>
+                    <Image source={imgUrl} style={styles.itemImage} />
+                    <Text style={styles.ItemName}>{name}</Text>
                     <View style={styles.ItemRate}>
                         <Text style={styles.RateText}>Review : <StarRating
-                            rating={route.params.rating}
+                            rating={rating}
                             maxStars={5}
                             fullStarColor="#f1c644"
                             emptyStarColor="#d4d4d4"
@@ -79,7 +82,7 @@ export default function Single({ route })  {
                     <View style={styles.priceBox}>
                         <View style={styles.price}>
                             <Text style={styles.priceText}>Total Amount</Text>
-                            <Text style={styles.priceFigure}>${route.params.price}</Text>
+                            <Text style={styles.priceFigure}>${price}</Text>
                         </View>
                         <View style={styles.CartBox}>
                             <Text style={styles.CartText}>Add to Cart</Text>
